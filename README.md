@@ -24,6 +24,7 @@ Install using [npm][npm-url].
 
 ```
   $ hexo r source/**/*.md
+
   [find] source/_drafts/name.md
   [find] source/_posts/2014-08-18-name.md
   [find] source/_posts/codepen.md
