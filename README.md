@@ -9,6 +9,10 @@ Install using [npm][npm-url].
 
     $ npm install hexo-console-rename --save
 
+## Background
+
+To know more about this plug-in, check out this [post].
+
 ## Usage
 
 ### Rename specific file
@@ -52,3 +56,4 @@ MIT
 [depstat-image]: http://img.shields.io/gemnasium/timnew/hexo-console-rename.svg?style=flat
 
 [Hexo]: http://hexo.io/
+[post]: http://timnew.dev/blog/2014/08/19/Hexo-plug-in-to-rename-the-post-according-to-title-automatically/
