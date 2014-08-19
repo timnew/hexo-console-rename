@@ -1,6 +1,6 @@
 {
   "name": "hexo-console-rename",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Hexo console plug-in to rename post file according to its title ",
   "main": "index.js",
   "scripts": {
