@@ -1,9 +1,9 @@
-// Fixing issue in Hexo, and submitted the pull-request 
+// Fixing issue in Hexo, and submitted the pull-request
 
 var escape = hexo.util.escape;
 
 var FILE_NAME_ESCAPE_REGEX = /[\s~`!@#\$%\^&\*\(\)\-_\+=\[\]\{\}\|\\;:"'<>,\.\?\/]/g;
-var CONTINUES_DASH_REGEX = /-{2,}/g;
+var CONTINUES_DASH_REGEX = /-{1,}/g;
 
 escape.filename = function(str, transform){
   var result = escape.diacritic(str.toString())
