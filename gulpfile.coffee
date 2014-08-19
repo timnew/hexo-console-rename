@@ -15,6 +15,7 @@ paths =
   source:
     manifest: ['package.json']
     coffee: ['lib_src/*.coffee']
+    js: ['lib_src/*.js']
   dest:
     root: '.'
     lib: 'lib'
@@ -27,7 +28,11 @@ gulp.task 'coffee', ->
     .pipe coffee()
     .pipe gulp.dest paths.dest.lib
 
-gulp.task 'build', ['clean', 'coffee']
+gulp.task 'js', ->
+  gulp.src paths.source.js
+    .pipe gulp.dest paths.dest.lib
+
+gulp.task 'build', ['clean', 'coffee', 'js']
 
 gulp.task 'default', ['build']
 
