@@ -2,6 +2,7 @@ colors = require('colors')
 async = require('async')
 glob = require("glob")
 pathUtil = require('path')
+moment = require('moment')
 fs = require('graceful-fs')
 {log, removeExt} = require('./utils')
 
@@ -10,7 +11,18 @@ yfm = hexo.util.yfm
 escape = hexo.util.escape
 Permalink = hexo.util.permalink
 
-permalink = new Permalink(hexo.config.new_post_name);
+createPermalink = (pattern) ->
+  new Permalink pattern,
+      segments:
+            year: /(\d{4})/
+            month: /(\d{2})/
+            day: /(\d{2})/
+            i_month: /(\d{1,2})/
+            i_day: /(\d{1,2})/
+
+
+permalink = createPermalink(hexo.config.new_post_name)
+oldPermalink = permalink
 
 expandPattern = (pattern, callback) ->
   async.waterfall [
@@ -36,11 +48,16 @@ processFile = (fullName, callback) ->
         slug = escape.filename(data.title, hexo.config.filename_case)
 
         extName = pathUtil.extname(fullName)
-        nameParts = permalink.parse(fullName)
 
-        if nameParts?
-          nameParts.title = slug
-          newName = permalink.stringify(nameParts)
+        if oldPermalink.test(fullName)?
+          date = moment(data.date)
+          newName = permalink.stringify
+              title: slug
+              year: date.format('YYYY')
+              month: date.format('MM')
+              day: date.format('DD')
+              i_month: date.format('M')
+              i_day: date.format('D')
         else
           dirName = pathUtil.dirname(fullName)
           oldName = pathUtil.basename(fullName, extName)
@@ -77,6 +94,9 @@ processFile = (fullName, callback) ->
      callback(null)
 
 command = (args, callback) ->
+  oldPermalinkArg = args.p || args['old-permalink']
+  oldPermalink = createPermalink(oldPermalinkArg) if oldPermalinkArg?
+
   async.each args._, expandPattern, callback
 
 module.exports = command
