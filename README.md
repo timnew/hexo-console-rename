@@ -41,6 +41,53 @@ To know more about this plug-in, check out this [post].
   [rename] source/_posts/2014-08-18-name -> source/_posts/2014-08-18-name-is-something-really-cool
 ```
 
+## Advanced Usage
+
+`hexo-console-rename` can be used not only sync file name with `title`, it does more.
+
+### Synchronize TimeStamp in Filename
+
+If you have `timestamp` in your file name, then if you updated the `date` field in your front-matter. You'll probably wish to update the file name also.
+
+`hexo-console-rename` can help you on this.
+
+```
+  $ hexo r source/**/*.md
+
+  [find] source/_posts/2014-08-18-name.md
+  [find] source/_posts/codepen.md
+  [find] source/_posts/image.md
+  [find] source/_posts/cool_post.md
+  [find] source/_posts/new_post.md
+  [rename] source/_posts/2014-08-18-name.md -> source/_posts/2014-08-19-name.md
+  [rename] source/_posts/2014-08-18-name -> source/_posts/2014-08-19-name
+```
+
+### Migrate Post File Name
+
+Suppose you update the `new_post_name` field in your `_config.yml`, then you might wish to migrate all post to fit the new name pattern.
+
+`hexo-console-rename` can help you on this. You need to specify the old pattern with `--old-permalink` (`-p` for short), then all post will be migrated automatically.
+
+Suppose you changed `new_post_name` from `:title.md` to `:year-:month-:day-:title.md`.
+
+```
+  $ hexo r -p ':title.md' source/**/*.md
+
+  [find] source/_posts/2014-08-17-codepen.md
+  [find] source/_posts/2014-08-18-name-is-something-really-cool.md
+  [find] source/_posts/2014-08-19-name-is-cool.md
+  [find] source/_posts/image.md
+  [find] source/_posts/post.md
+  [find] source/_posts/cool-post.md
+  [rename] source/_posts/image.md -> source/_posts/2014-08-15-image.md
+  [rename] source/_posts/cool-post.md -> source/_posts/2014-08-15-post.md
+  [rename] source/_posts/.md -> source/_posts/2014-08-15-cool-post.md
+  [rename] source/_posts/image -> source/_posts/2014-08-15-image
+  [rename] source/_posts/post -> source/_posts/2014-08-15-post
+  [rename] source/_posts/cool-post -> source/_posts/2014-08-15-cool-post
+```
+
 ## License
 MIT
 

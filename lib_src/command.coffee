@@ -59,6 +59,7 @@ processFile = (fullName, callback) ->
               day: date.format('DD')
               i_month: date.format('M')
               i_day: date.format('D')
+              
           newName = pathUtil.join(dirName, newName)
         else
           oldName = pathUtil.basename(fullName, extName)
