@@ -48,6 +48,7 @@ processFile = (fullName, callback) ->
         slug = escape.filename(data.title, hexo.config.filename_case)
 
         extName = pathUtil.extname(fullName)
+        dirName = pathUtil.dirname(fullName)
 
         if oldPermalink.test(fullName)?
           date = moment(data.date)
@@ -58,10 +59,9 @@ processFile = (fullName, callback) ->
               day: date.format('DD')
               i_month: date.format('M')
               i_day: date.format('D')
+          newName = pathUtil.join(dirName, newName)
         else
-          dirName = pathUtil.dirname(fullName)
           oldName = pathUtil.basename(fullName, extName)
-
           newName = pathUtil.join(dirName, slug + extName)
 
         assetFolder = removeExt(fullName, extName)
@@ -88,7 +88,7 @@ processFile = (fullName, callback) ->
           ]
         , callback
    ], (err) ->
-     if err?
+     if err? and err != 'no asset folder'
        log 'error'.red, err
 
      callback(null)
