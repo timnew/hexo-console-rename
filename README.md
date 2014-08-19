@@ -26,6 +26,7 @@ To know more about this plug-in, check out this [post].
 ```
 ### Rename with glob
 
+**IMPORTANT TIP** Commit all your files into git before excute this command
 ```
   $ hexo r source/**/*.md
 
@@ -51,6 +52,7 @@ If you have `timestamp` in your file name, then if you updated the `date` field 
 
 `hexo-console-rename` can help you on this.
 
+**IMPORTANT TIP** Commit all your files into git before excute this command
 ```
   $ hexo r source/**/*.md
 
@@ -71,6 +73,7 @@ Suppose you update the `new_post_name` field in your `_config.yml`, then you mig
 
 Suppose you changed `new_post_name` from `:title.md` to `:year-:month-:day-:title.md`.
 
+**IMPORTANT TIP** Commit all your files into git before excute this command
 ```
   $ hexo r -p ':title.md' source/**/*.md
 
