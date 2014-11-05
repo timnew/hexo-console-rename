@@ -42,6 +42,18 @@ To know more about this plug-in, check out this [post].
   [rename] source/_posts/2014-08-18-name -> source/_posts/2014-08-18-name-is-something-really-cool
 ```
 
+### Update published posts
+
+When no arg is passed, it is equals to `hexo rename source/_posts/*.*`
+
+```
+  $ hexo rename
+  [find] source/_posts/2014-03-02-new_post.md
+  [find] source/_posts/2014-08-18-name.md
+  [rename] source/_posts/2014-08-18-name.md -> source/_posts/2014-08-18-name-is-something-really-cool.md
+  [rename] source/_posts/2014-08-18-name -> source/_posts/2014-08-18-name-is-something-really-cool
+```
+
 ## Advanced Usage
 
 `hexo-console-rename` can be used not only sync file name with `title`, it does more.

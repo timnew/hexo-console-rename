@@ -98,6 +98,9 @@ command = (args, callback) ->
   oldPermalinkArg = args.p || args['old-permalink']
   oldPermalink = createPermalink(oldPermalinkArg) if oldPermalinkArg?
 
+  if args._.length == 0
+    args._.push 'source/_posts/*.*'
+
   async.each args._, expandPattern, callback
 
 module.exports = command
