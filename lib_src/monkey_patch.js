@@ -1,13 +1,12 @@
+var util = require('hexo-util');
+
 // Fixing issue in Hexo, and submitted the pull-request
-
-var escape = hexo.util.escape;
-
 var FILE_NAME_ESCAPE_REGEX = /[\s~`!@#\$%\^&\*\(\)\-_\+=\[\]\{\}\|\\;:"'<>,\.\?\/]/g;
 var CONTINUES_DASH_REGEX = /-{1,}/g;
 var TAIL_DASH_REGEX = /-+$/;
 
-escape.filename = function(str, transform){
-  var result = escape.diacritic(str.toString())
+util.escapeFilename = function(str, transform){
+  var result = util.escapeDiacritic(str.toString())
     .replace(FILE_NAME_ESCAPE_REGEX, '-')
     .replace(CONTINUES_DASH_REGEX, '-')
     .replace(TAIL_DASH_REGEX, '');
@@ -23,7 +22,7 @@ escape.filename = function(str, transform){
   return result;
 };
 
-escape.path = function(str, transform){
+util.escapePath = function(str, transform){
   var result = str.toString()
     .replace(FILE_NAME_ESCAPE_REGEX, '-')
     .replace(CONTINUES_DASH_REGEX, '-');
@@ -38,5 +37,3 @@ escape.path = function(str, transform){
 
   return result;
 };
-
-module.exports = escape;

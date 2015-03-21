@@ -4,12 +4,13 @@ glob = require("glob")
 pathUtil = require('path')
 moment = require('moment')
 fs = require('graceful-fs')
+fileUtil = require('hexo-fs')
+yfm = require('hexo-front-matter')
+util = require('hexo-util')
+hexo = require('./context').hexo
 {log, removeExt} = require('./utils')
 
-fileUtil = hexo.util.file2
-yfm = hexo.util.yfm
-escape = hexo.util.escape
-Permalink = hexo.util.permalink
+Permalink = util.Permalink
 
 createPermalink = (pattern) ->
   new Permalink pattern,
@@ -45,7 +46,7 @@ processFile = (fullName, callback) ->
        fileUtil.readFile fullName, callback
      (content, callback) ->
         data = yfm.parse content
-        slug = escape.filename(data.title, hexo.config.filename_case)
+        slug = util.escapeFilename(data.title, hexo.config.filename_case)
 
         extName = pathUtil.extname(fullName)
         dirName = pathUtil.dirname(fullName)
@@ -59,7 +60,7 @@ processFile = (fullName, callback) ->
               day: date.format('DD')
               i_month: date.format('M')
               i_day: date.format('D')
-              
+
           newName = pathUtil.join(dirName, newName)
         else
           oldName = pathUtil.basename(fullName, extName)

@@ -7,7 +7,13 @@ hexo-console-rename [![NPM version][npm-image]][npm-url] [![Dependency Status][d
 
 Install using [npm][npm-url].
 
-    $ npm install hexo-console-rename --save
+For hexo 2.x
+
+    $ npm install hexo-console-rename@2 --save
+
+For hexo 3.x
+
+    $ npm install hexo-console-rename@3 --save
 
 ## Background
 
